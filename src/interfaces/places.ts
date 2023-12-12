@@ -7,7 +7,7 @@ export interface IPlace {
   state: string
 }
 
-export interface IWeatherData {
+export interface IForecastData {
   list: {
     main: {
       temp_max: number
@@ -15,3 +15,60 @@ export interface IWeatherData {
     }
   }[]
 }
+ 
+ export interface IWeather {
+  city:    City;
+  cnt:     number;
+  cod:     string;
+  list:    List[];
+  message: number;
+ }
+ 
+ export interface City {
+  coord:      Coord;
+  country:    string;
+  id:         number;
+  name:       string;
+  population: number;
+  sunrise:    number;
+  sunset:     number;
+  timezone:   number;
+ }
+ 
+ export interface Coord {
+  lat: number;
+  lon: number;
+ }
+ 
+ export interface List {
+  dt:         number;
+  dt_txt:     Date;
+  main:       MainClass;
+  pop:        number;
+  visibility: number;
+  weather:    Weather[];
+ }
+ 
+ export interface Clouds {
+  all: number;
+ }
+ 
+ export interface MainClass {
+  feels_like: number;
+  grnd_level: number;
+  humidity:   number;
+  pressure:   number;
+  sea_level:  number;
+  temp:       number;
+  temp_kf:    number;
+  temp_max:   number;
+  temp_min:   number;
+ }
+ 
+
+ export interface Weather {
+  description: string;
+  icon:        string;
+  id:          number;
+  main:        string;
+ }
