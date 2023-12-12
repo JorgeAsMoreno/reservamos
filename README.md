@@ -1,47 +1,20 @@
-# Getting Started with Create React App
+# Funcionalidad de aplicacion
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+La funcionalidad de la aplicación web es poder comparar el pronóstico del tiempo para los próximos 5
+días, de los diferentes destinos que ofrece Reservamos. El usuario debe poder ingrese el nombre de
+las ciudades y vea la temperatura máxima y mínima para estos lugares.
 
-## Available Scripts
+## Instrucciones para levantar el proyecto
 
-In the project directory, you can run:
+- Correr `yarn install` o `npm install` en el root del proyecto
+- Correr `yarn start` o `npm start` para iniciar la aplicacion
+- Abrir el navegador web en el puerto que se levanto la app
 
-### `npm start`
+## Stack utilizado
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React
+- TypeScript
+- StyledComponents
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# reservamos
