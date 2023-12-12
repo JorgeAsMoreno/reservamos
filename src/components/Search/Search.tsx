@@ -73,6 +73,7 @@ const Search = ({
           onChange={handleCityChange}
           type='text'
           value={city}
+          placeholder='A donde quieres viajar?'
         />
         <SearchButton onClick={handleSearch}>Buscar</SearchButton>
       </InputSearch>

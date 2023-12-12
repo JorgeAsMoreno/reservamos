@@ -31,13 +31,17 @@ const WeatherData = ({ weatherData }: IWeatherData) => {
       <Table>
         <thead>
           <tr>
+            <th>Temp</th>
             <th>Max Temp</th>
             <th>Min Temp</th>
           </tr>
         </thead>
         <tbody>
-          {weatherData.list.map((item, index) => (
+          {weatherData.list.slice(0, 5).map((item, index) => (
             <tr key={index}>
+              <td>
+                {item.main.temp}
+              </td>
               <td>
                 {item.main.temp_max}
               </td>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IForecastData, IPlace, IWeather } from './interfaces/places'
+import { IPlace, IWeather } from './interfaces/places'
 import { getPlaces, getWeatherData } from './requests/fetch'
 import Places from './components/Places/Places'
 import Search from './components/Search/Search'
@@ -9,26 +9,39 @@ function App() {
   const [city, setCity] = useState<string>('')
   const [places, setPlaces] = useState<IPlace[]>([])
   const [weatherData, setWeatherData] = useState<IWeather | null>(null)
+  const [loadingPlaces, setLoadingPlaces] = useState<boolean>(false)
+  const [loadingWeather, setLoadingWeather] = useState<boolean>(false)
+  const [noResultsMessage, setNoResultsMessage] = useState<string>('');
 
   const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCity(event.target.value)
   }
 
   const handleSearch = async () => {
-    getPlaces(city).then().then(response => {
-      setPlaces(response)
-    }).catch(error => {
-      throw error
-    })
+    if (city) {
+      try {
+        setLoadingPlaces(true)
+        const response = await getPlaces(city)
+        setNoResultsMessage(response.length === 0 ? 'No se encontraron resultados.' : '');
+        setPlaces(response)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoadingPlaces(false)
+      }
+    }
   }
 
   const handleWeather = async (lat: number, long: number) => {  
-    getWeatherData(lat, long).then(response => {
+    try {
+      setLoadingWeather(true)
+      const response = await getWeatherData(lat, long)
       setWeatherData(response.data)
-      console.log(response.data)
-    }).catch(error => {
-      throw error
-    })
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setLoadingWeather(false)
+    }
   }
 
   return (
@@ -40,19 +53,22 @@ function App() {
           city
         }}
       />
-      {places.length > 0 ? (
+      {loadingPlaces && <p>Cargando destinos...</p>}
+      {noResultsMessage && <p>{noResultsMessage}</p>}
+      {places.length > 0 && !loadingPlaces && !noResultsMessage &&(
         <Places
           {...{
             places,
             handleWeather,
           }}
         />
-      ): <p>Sin resultados</p>}
+      )}
 
-      {weatherData && (
+      {loadingWeather && <p>Obteniendo pronosticos...</p>}
+      {weatherData && !loadingWeather && (
         <WeatherData
           {...{
-            weatherData
+            weatherData,
           }}
         />
       )}
