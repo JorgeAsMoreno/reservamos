@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IPlace, IWeatherData } from './interfaces/places'
 import { getPlaces, getWeatherData } from './requests/fetch'
-import './App.scss'
+import Places from './components/Places/Places'
 
 function App() {
   const [city, setCity] = useState<string>('')
@@ -35,15 +35,13 @@ function App() {
       <button onClick={handleSearch}>Search</button>
 
       {places.length > 0 && (
-        <ul>
-          {places.map((place) => (
-            <li key={place.city_name} onClick={() => handleWeather(place.lat, place.long)}>
-              {place.city_name}
-              {place.lat}
-              {place.long}
-            </li>
-          ))}
-        </ul>
+        <Places
+          {...{
+            places,
+            handleWeather,
+            city
+          }}
+        />
       )}
 
       {weatherData && (
