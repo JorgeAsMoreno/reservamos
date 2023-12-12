@@ -39,7 +39,6 @@ function App() {
           {...{
             places,
             handleWeather,
-            city
           }}
         />
       )}

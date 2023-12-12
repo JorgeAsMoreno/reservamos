@@ -1,13 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import { IPlace } from '../../interfaces/places'
+import PlaceCard from './PlaceCard'
 
 const PlacesContainer = styled.div`
+  background-color: #ce348b;
   padding: 1em;
 `
 
 const PlacesTitle = styled.p`
+  color: #fff;
   font-size: 2em;
+  font-weight: bold;
 `
 
 const PlacesList = styled.ul`
@@ -22,55 +26,30 @@ const PlacesList = styled.ul`
 
 
   @media screen and (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr  1fr;
   }
-`
-
-const PlaceListItem = styled.li`
-  align-items: center; 
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 1px 3px 12px 0px rgba(75, 33, 24, 0.15);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  padding: 1em 1.5em;
-  width: 180px;
-
-  @media screen and (min-width: 1024px) {
-    width: 250px;
-  }
-`
-
-const ListItemCity = styled.p`
-  margin: 0 0 1.5em 0;
-`
-
-const ListItemState = styled.span`
-  font-weight: bold;
-`
-
-const ListItemCountry = styled.p`
-  margin: 0;
 `
 
 interface IPlaces {
   places: IPlace[]
   handleWeather: (lat: number, long: number) => void
-  city: string
 }
 
-const Places = ({ places, handleWeather, city }: IPlaces) => {
+const Places = ({ places, handleWeather, }: IPlaces) => {
   return (
     <PlacesContainer>
-      <PlacesTitle>Resultados de tu busqueda en <b>{city}</b></PlacesTitle>
+      <PlacesTitle>Resultados de tu busqueda...</PlacesTitle>
       <PlacesList>
-        {places.map(place => (
-          <PlaceListItem key={place.city_name} onClick={() => handleWeather(place.lat, place.long)}>
-            <ListItemCity>{place.city_name}</ListItemCity>
-            <ListItemState>{place.state}</ListItemState>
-            <ListItemCountry>{place.country}</ListItemCountry>
-          </PlaceListItem>
+        {places.map((place, index) => (
+          <PlaceCard
+            key={index}
+            lat={place.lat}
+            long={place.long}
+            handleWeather={handleWeather}
+            cityName={place.city_name}
+            state={place.state}
+            country={place.country}
+          />
         ))}
       </PlacesList>
     </PlacesContainer>
