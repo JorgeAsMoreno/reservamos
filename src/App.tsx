@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { IPlace, IWeatherData } from './interfaces/places'
 import { getPlaces, getWeatherData } from './requests/fetch'
 import Places from './components/Places/Places'
+import Search from './components/Search/Search'
 
 function App() {
   const [city, setCity] = useState<string>('')
@@ -30,18 +31,21 @@ function App() {
 
   return (
     <div>
-      <h1>Weather App</h1>
-      <input type="text" value={city} onChange={handleCityChange} />
-      <button onClick={handleSearch}>Search</button>
-
-      {places.length > 0 && (
+      <Search
+        {...{
+          handleCityChange,
+          handleSearch,
+          city
+        }}
+      />
+      {places.length > 0 ? (
         <Places
           {...{
             places,
             handleWeather,
           }}
         />
-      )}
+      ): <p>Sin resultados</p>}
 
       {weatherData && (
         <div>

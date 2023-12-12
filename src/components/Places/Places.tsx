@@ -20,10 +20,13 @@ const PlacesList = styled.ul`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 2em;
   list-style: none;
-  overflow: scroll;
+  overflow-x: scroll;
   padding: 0;
   place-items: center;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media screen and (min-width: 1024px) {
     grid-template-columns: 1fr 1fr 1fr 1fr  1fr;
@@ -35,7 +38,10 @@ interface IPlaces {
   handleWeather: (lat: number, long: number) => void
 }
 
-const Places = ({ places, handleWeather, }: IPlaces) => {
+const Places = ({
+  places,
+  handleWeather,
+}: IPlaces) => {
   return (
     <PlacesContainer>
       <PlacesTitle>Resultados de tu busqueda...</PlacesTitle>
