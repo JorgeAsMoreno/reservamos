@@ -17,7 +17,7 @@ const HeaderTitle = styled.h1`
   font-size: 2.5em;
 `
 
-const InputSearch = styled.div`
+const InputForm = styled.form`
   border: 1px solid #000;
   position: relative;
   width: -webkit-fill-available;
@@ -68,15 +68,22 @@ const Search = ({
       <HeaderTitle>
         Con Reservamos planear tu viaje es aún más fácil
       </HeaderTitle>
-      <InputSearch>      
+      <InputForm
+        onSubmit={e => e.preventDefault()}
+      >
         <Input
           onChange={handleCityChange}
           type='text'
           value={city}
           placeholder='A donde quieres viajar?'
         />
-        <SearchButton onClick={handleSearch}>Buscar</SearchButton>
-      </InputSearch>
+        <SearchButton
+          onClick={handleSearch}
+          type='submit'
+        >
+          Buscar
+        </SearchButton>
+      </InputForm>
     </HeaderContainer>
   )
 }
