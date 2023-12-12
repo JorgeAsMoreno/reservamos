@@ -25,7 +25,6 @@ const Table = styled.table`
 `;
 
 const WeatherData = ({ weatherData }: IWeatherData) => {
-  console.log(weatherData)
   return (
     <WeatherContainer>
       <h2>Pronósticos</h2>
@@ -38,7 +37,7 @@ const WeatherData = ({ weatherData }: IWeatherData) => {
           </tr>
         </thead>
         <tbody>
-          {weatherData.list.map((item, index) => (
+          {weatherData.list.slice(0, 5).map((item, index) => (
             <tr key={index}>
               <td>
                 {item.main.temp}
