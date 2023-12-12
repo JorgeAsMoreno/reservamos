@@ -22,9 +22,10 @@ export interface IForecastData {
   cod:     string;
   list:    List[];
   message: number;
+  weather: Weather
  }
  
- export interface City {
+interface City {
   coord:      Coord;
   country:    string;
   id:         number;
@@ -35,12 +36,12 @@ export interface IForecastData {
   timezone:   number;
  }
  
- export interface Coord {
+interface Coord {
   lat: number;
   lon: number;
  }
  
- export interface List {
+interface List {
   dt:         number;
   dt_txt:     Date;
   main:       MainClass;
@@ -49,11 +50,7 @@ export interface IForecastData {
   weather:    Weather[];
  }
  
- export interface Clouds {
-  all: number;
- }
- 
- export interface MainClass {
+interface MainClass {
   feels_like: number;
   grnd_level: number;
   humidity:   number;
